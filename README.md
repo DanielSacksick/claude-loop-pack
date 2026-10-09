@@ -26,8 +26,8 @@ et une boucle qui se relance toute seule, même quand tu as fermé Claude Code.
 → [INSTALL.md](INSTALL.md). En résumé : `node install.mjs ../mon-projet`, puis `/setup-loop` dans Claude Code, puis `node scripts/loop-start.mjs`.
 
 ## Ce que dit le banc d'essai
-Le pack est éprouvé sur un projet témoin (app de tâches d'équipe : auth, CRUD, tableau de bord) : relance depuis une session fermée,
-reviews réellement exécutées, coût mesuré à chaque tour. Le rapport chiffré complet sera publié ici.
+→ [docs/BENCH.md](docs/BENCH.md) : 4 tours sans intervention (3 relancés par launchd, session fermée), 4/4 stories mergées du premier coup, 0 commit sur main, coût **mesuré** sur un projet témoin
+(app de tâches d'équipe : auth, CRUD, tableau de bord).
 
 ## FAQ
 **C'est `/loop` de Claude Code ?** Non. `/loop` s'arrête quand tu fermes la session et expire au bout de 7 jours

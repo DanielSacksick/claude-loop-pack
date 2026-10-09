@@ -10,7 +10,7 @@
 | macOS (launchd) ou Linux (cron) | relance programmée | — |
 
 Coût : la boucle consomme des tokens. Fixez un budget au cadrage ; il est appliqué (plafond par tour et plafond global).
-Ordre de grandeur mesuré au banc : 6 à 7,5 $ par tour, environ 3,7 $ par story mergée (sur une petite app).
+Ordres de grandeur mesurés : voir `docs/BENCH.md`.
 
 ## 1. Copier le pack dans votre projet
 ```bash
