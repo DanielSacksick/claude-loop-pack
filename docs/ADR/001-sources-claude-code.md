@@ -24,7 +24,7 @@ Revérifier à chaque mise à jour du pack : ces fonctions évoluent vite.
 - Source : https://code.claude.com/docs/en/desktop-scheduled-tasks
 
 ## Mode non interactif `claude -p`
-- `--output-format json` renvoie `total_cost_usd`, `session_id`, `is_error`, `num_turns`, `usage` (vérifié localement au banc, voir `bench/`).
+- `--output-format json` renvoie `total_cost_usd`, `session_id`, `is_error`, `num_turns`, `usage` (vérifié au banc, voir `docs/BENCH.md`).
 - Flags utilisés par le pack : `--max-budget-usd` (plafond par tour, natif), `--max-turns`, `--model`,
   `--permission-mode dontAsk` (tout ce qui n'est pas en allowlist est refusé, sans prompt), `--resume <session_id>`,
   `--append-system-prompt`, `--settings`. Sans hôte interactif, une demande de permission = refus.
