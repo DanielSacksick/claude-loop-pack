@@ -1,0 +1,9 @@
+# --- loop pack ---
+.loop/
+.worktrees/
+.claude/worktrees/
+.claude/settings.local.json
+.env
+.env.*
+!.env.example
+STOP

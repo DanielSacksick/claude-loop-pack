@@ -1,0 +1,10 @@
+{
+  "name": "loop-pack",
+  "private": true,
+  "type": "module",
+  "description": "Cadre de développement autonome pour Claude Code (boucle, agents, skills, garde-fous)",
+  "scripts": {
+    "test": "node --test tests/hooks/*.test.mjs tests/scripts/*.test.mjs"
+  },
+  "engines": { "node": ">=20" }
+}

@@ -1,0 +1,44 @@
+# SOURCE DE VÉRITÉ de la boucle. Schéma et règles : docs/orchestrate.md § « État ».
+# Validé à chaque tour par `node scripts/validate-status.mjs`. Un fichier invalide bloque le tour.
+# Ce fichier ne sert PAS de journal : le récit de chaque tour va dans docs/journal/.
+# Seul l'orchestrateur l'écrit, sur la branche loop/control. La section `tours` est réservée au runner.
+version: 1
+project: "{{PROJECT_NAME}}"
+updated: "{{NOW}}"
+loop:
+  status: setup          # setup | running | paused | blocked | done
+  tour: 0                # numéro du dernier tour terminé
+  no_progress_streak: 0  # tours consécutifs sans story passée à merged ; 3 = arrêt + escalade
+  blocked_reason: null   # texte précis : ce qu'il faut à l'humain pour débloquer
+  current_epic: null
+  current_sprint: 0
+policy:
+  max_parallel_devs: 3   # développeurs en parallèle par tour
+  merge: auto            # auto = squash merge quand CI verte + reviews requises vertes ; manual = l'humain merge
+  required_reviews: 2    # code + sécurité
+  lock_ttl_minutes: 120  # au-delà, un verrou est considéré expiré et repris
+  max_attempts: 3        # échecs CI ou review sur une story avant blocked
+budget:
+  total_usd: 50          # plafond global ; atteint = arrêt
+  per_tour_usd: 8        # passé à --max-budget-usd par le runner
+epics: []
+# - id: E1
+#   title: "Authentification"
+#   status: planned      # planned | in_progress | done
+stories: []
+# Sprint courant uniquement. Les sprints clos sont archivés dans docs/archive/sprint-<n>.yaml.
+# - id: S1-01
+#   epic: E1
+#   title: "Inscription par email"
+#   status: ready        # ready | in_progress | review | changes_requested | merged | blocked
+#   depends_on: []
+#   files: ["src/app/(auth)/**", "src/lib/auth/**"]
+#   branch: null         # story/S1-01
+#   pr: null             # numéro de PR
+#   lock: null           # {by: "dev:S1-01", since: "2026-01-01T00:00:00Z", branch: "story/S1-01"}
+#   started: null        # horodatage du PREMIER lancement (conservé après merge : mesure du délai lancé → mergé)
+#   attempts: 0
+#   updated: "2026-01-01T00:00:00Z"
+tours: []
+# Ajouté par scripts/loop-runner.sh uniquement, valeurs MESURÉES (sortie JSON de claude -p) :
+# - {n: 1, start: "...", end: "...", duration_s: 0, cost_usd: 0, input_tokens: 0, output_tokens: 0, cache_read_tokens: 0, cache_write_tokens: 0, turns: 0, exit: ok, session: "..."}
